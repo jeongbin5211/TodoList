@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MdAdd } from "react-icons/md";
 import { css, styled } from "styled-components";
+import useStore from "../stores/UseStore";
 
 const CircleButton = styled.button<{ open: boolean }>`
   background: #38d9a9;
@@ -81,16 +82,30 @@ const Input = styled.input`
 `;
 
 function TodoCreate() {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+  const addTodo = useStore((state) => state.addTodo);
 
   const onToggle = () => setOpen(!open);
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const input = form.elements[0] as HTMLInputElement;
+    const { value } = input;
+
+    addTodo({
+      id: Date.now(),
+      text: value,
+      done: false,
+    });
+  };
 
   return (
     <>
       {/* open 상태가 true일 때만 폼을 렌더링합니다. */}
       {open && (
         <InsertFormPositioner>
-          <InsertForm>
+          <InsertForm onSubmit={onSubmit}>
             <Input autoFocus placeholder="할 일을 입력 후, Enter를 누르세요" />
           </InsertForm>
         </InsertFormPositioner>
