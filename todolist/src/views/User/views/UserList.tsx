@@ -1,7 +1,23 @@
 import React from "react";
-import { useStore } from "zustand";
+import useStore from "../store/store";
 
-export default function UserList() {
+function UserList() {
   const users = useStore((state) => state.users);
-  return <div>UserList</div>;
+  const selectUser = useStore((state) => state.selectUser);
+  const deleteUser = useStore((state) => state.deleteUser);
+  return (
+    <>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            {user.name} ({user.age})
+            <button onClick={() => selectUser(user)}>수정</button>
+            <button onClick={() => deleteUser(user.id)}>삭제</button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
+
+export default UserList;
