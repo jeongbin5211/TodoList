@@ -35,3 +35,5 @@ const useStore = create<State>((set) => ({
         users: state.users.filter((user) => user.id !== id)
     }))
 })) 
+
+export default useStore;
