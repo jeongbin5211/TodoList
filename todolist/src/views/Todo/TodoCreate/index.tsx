@@ -98,6 +98,9 @@ function TodoCreate() {
       text: value,
       done: false,
     });
+
+    input.value = "";
+    setOpen(false);
   };
 
   return (

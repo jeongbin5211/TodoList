@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Todo from "./views";
+import Todo from "./views/Todo";
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
 import User from "./views/User";

@@ -1,4 +1,9 @@
-import React from 'react'
+import React from "react";
+import TodoTemplate from "./TodoTemplate";
+import TodoHead from "./TodoHead";
+import TodoList from "./TodoList";
+import TodoCreate from "./TodoCreate";
+import { createGlobalStyle } from "styled-components";
 //! Todo 리스트
 
 // 컴포넌트 구성
@@ -9,10 +14,23 @@ import React from 'react'
 // 4. TodoItem: 각 할 일에 대한 정보를 렌더링, 좌측에 원을 누르면 할 일의 완료 여부를 지정 가능
 // 5. TodoCreate: 새로운 할 일을 등록할 수 있게 해주는 컴포넌트
 
-function index() {
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #e9ecef;
+  }
+`;
+
+function Todo() {
   return (
-    <div>index</div>
-  )
+    <>
+      <GlobalStyle />
+      <TodoTemplate>
+        <TodoHead />
+        <TodoList />
+        <TodoCreate />
+      </TodoTemplate>
+    </>
+  );
 }
 
-export default index
+export default Todo;
