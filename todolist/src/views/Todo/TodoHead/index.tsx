@@ -32,10 +32,20 @@ function TodoHead() {
   // useStore에서 남은 할 일의 개수를 받아오기
   const countTasks = useStore((state) => state.countTasks(state));
 
+  // Date()함수: 오늘 날짜와 요일
+  const Today = new Date();
+  const DateString = Today.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const DayName = Today.toLocaleDateString("ko-KR", { weekday: "long" });
+
   return (
     <TodoHeadBlock>
-      <h1> 2023년 07월 14일 </h1>
-      <div className="day"> 금요일 </div>
+      <h1> {DateString} </h1>
+      <div className="day"> {DayName} </div>
       <div className="tasks-left">할 일 {countTasks}개 남음</div>
     </TodoHeadBlock>
   );

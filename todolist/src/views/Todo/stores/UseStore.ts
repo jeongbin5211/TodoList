@@ -1,4 +1,5 @@
 import create from 'zustand';
+import { MockTodos } from '../mocks/MockData';
 
 interface Todo {
     id: number;
@@ -18,24 +19,25 @@ interface TodoState {
 }
 
 const useStore = create<TodoState>((set) => ({
-    todos: [
-        { id: 1,
-          text: '평일 웹 프론트엔드',
-          done: false,
-        },
-        { id: 2,
-            text: '주말 웹 프론트엔드',
-            done: false,
-          },
-          { id: 3,
-            text: '방학',
-            done: true,
-          },
-          { id: 4,
-            text: '파이썬',
-            done: true,
-          }
-    ],
+    // todos: [
+    //     { id: 1,
+    //       text: '평일 웹 프론트엔드',
+    //       done: false,
+    //     },
+    //     { id: 2,
+    //         text: '주말 웹 프론트엔드',
+    //         done: false,
+    //       },
+    //       { id: 3,
+    //         text: '방학',
+    //         done: true,
+    //       },
+    //       { id: 4,
+    //         text: '파이썬',
+    //         done: true,
+    //       }
+    // ],
+    todos: MockTodos,
     addTodo: (todo: Todo) => set(state => ({ todos: [...state.todos, todo]})),
     // getTodo: (id: number) => set(state => state.todos),
     toggleTodo: (id: number) => set((state) => ({
